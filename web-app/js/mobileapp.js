@@ -3,6 +3,12 @@ var aeitems = Lungo.dom("#aeItems").html();
 var aeitem = Lungo.dom("#aeItem").html();
 var caitems = Lungo.dom("#categoryItems").html();
 
+Mustache.parse(ritems);
+Mustache.parse(aeitems);
+Mustache.parse(aeitem);
+Mustache.parse(caitems);
+
+
 
 Lungo.Service.Settings.success = function() {};
 Lungo.Service.Settings.error = function() {};

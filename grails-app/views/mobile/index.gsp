@@ -50,6 +50,13 @@
 	 <r:layoutResources/>
 	 
 	 <style type="text/css">
+	 	#ae, #categories, #categoryaes, #investigations, #search {
+			font-size: 13px;
+			line-height: 18px;
+			font-family: arial, sans-serif;
+			letter-spacing: 0em;
+		}
+		
 	 	section.pullsearch > [data-control="pull"]{
 	 		top:0px;
 	 	}
@@ -85,7 +92,7 @@
 	{{#grades}}
 		<li>
 			<strong class="text bold">Grade {{level}}</strong>
-			<span class="text">{{definition}}</span>
+			<span class="text">{{{definition}}}</span>
 		</li>
 	{{/grades}}
 	<li class="chevron">
@@ -121,6 +128,7 @@
 	            <button class="large investigations" data-view-article="investigations" data-icon="tint"> Investigations</button>
 	            <button class="large" data-view-section="about" data-icon="question-sign"> About</button>
             </div>
+            
         </article>
         
         <article id="categories" class="list scroll"></article>
@@ -218,7 +226,11 @@
 	
 	Lungo.dom('#togglesearch').tap(function(event) {
 		var data = {search : Lungo.dom("#term").val()};
-	
+		
+		if(offline){
+			Lungo.Service.get('${createLink(controller:"mobile", action:"synonyms")}', {}, parseSynonyms(data.search.toLowerCase()), "json");
+		}
+		
 		var onlineCallback = function() {
 			Lungo.Service.cache('${createLink(controller:"adverseEvent", action:"ajaxsearch")}',data, '2 hours', parseResults, "json");
 		};

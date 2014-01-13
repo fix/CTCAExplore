@@ -15,7 +15,7 @@ class MobileController {
 	}
 	
 	def manifest() {
-		[version:"0.1", maxcat:Category.count(), maxae:AdverseEvent.count()] 
+		[version:"0.1sss1", maxcat:Category.count(), maxae:AdverseEvent.count()] 
 	}
 	
 	def offline() {
